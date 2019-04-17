@@ -1,6 +1,6 @@
-drop schema if exists info2;
-create schema info2;
-use info2;
+drop schema if exists concertManager;
+create schema concertManager;
+use concertManager;
 
 create table band
 (
