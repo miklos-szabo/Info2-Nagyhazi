@@ -46,10 +46,17 @@ a:hover, a:active {
     background-color: #53565b;
 }
 
-.menubutton{
+.menuButton{
     font-size: 20px;
     display: inline-block;
     width: 15%;
     padding: 10px;
     margin: 60px 30px 10px 30px;
+}
+
+.tableMain{
+    width: 60%;
+    margin: 0% 20%;
+    height: 500px;
+    background-color: #545659;
 }

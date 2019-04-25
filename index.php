@@ -12,8 +12,8 @@
         <div class="title">
             Hello There! Főoldal <!-- TODO content -->
         </div>
+
     </div>
-    <?php include 'bottom.html'; ?>
 </div>
 </body>
 </html>
