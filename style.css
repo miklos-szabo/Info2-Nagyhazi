@@ -27,8 +27,8 @@ body {
 }
 
 .title{
-    font-size: 24px;
-    padding: 30px;
+    font-size: 32px;
+    padding: 40px;
 }
 
 nav{
@@ -54,9 +54,46 @@ a:hover, a:active {
     margin: 60px 30px 10px 30px;
 }
 
-.tableMain{
-    width: 60%;
-    margin: 0% 20%;
-    height: 500px;
+.tableDiv{
+    height: 400px;
+    overflow: auto;
+    width: 90%;
+    margin: 0 5%;
     background-color: #545659;
+}
+
+.tableMain{
+    width: 100%;
+
+}
+
+th{
+    height: 60px;
+    font-size: 20px;
+}
+
+td{
+    height: 30px;
+    font-size: 16px;
+}
+
+tbody tr:nth-child(odd) {background-color: #444444;}
+
+.addingTableRow{
+    visibility: collapse;
+}
+
+.alertBoxSuccess{
+    height: 60px;
+    width: 400px;
+    position: absolute;
+    top: 10px;
+    left: 450px;
+}
+
+.alertText{
+    font-size: 24pt;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
 }
