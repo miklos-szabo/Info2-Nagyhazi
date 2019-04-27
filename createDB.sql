@@ -32,7 +32,7 @@ insert into venue(name, address, capacity) values ("Papp László Budapest Sport
 create table concert
 (
   id int primary key auto_increment,
-  venueid int not null,
+  venueid int,
   date DATE,
   available_tickets tinyint,
   foreign key (venueid) references venue (id)
