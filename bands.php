@@ -12,7 +12,19 @@ if (isset($_POST['submit'])) {
     $created = true;
 }
 
-$result = mysqli_query($link, "select id, name, country, formed_in from band order by name");
+//Keresés
+if(isset($_POST['submitSearchBandsName']))
+{
+    $result = mysqli_query($link, sprintf("select id, name, country, formed_in from band where lower(name like '%%%s%%') order by name",
+                                                    mysqli_real_escape_string($link, $_POST['searchBands'])));
+}
+else if(isset($_POST['submitSearchBandsCountry']))
+{
+    $result = mysqli_query($link, sprintf("select id, name, country, formed_in from band where lower(country like '%%%s%%') order by country",
+        mysqli_real_escape_string($link, $_POST['searchBands'])));
+}
+else $result = mysqli_query($link, "select id, name, country, formed_in from band order by name");
+
 ?>
 
     <!DOCTYPE html>
@@ -43,6 +55,13 @@ $result = mysqli_query($link, "select id, name, country, formed_in from band ord
         <?php include 'menu.html'; ?>
         <div id="content">
             <div class="title">Együttesek</div>
+            <form class="searchForm" action="bands.php" method="post">
+                <div class="searchBands">
+                    <input type="text" name="searchBands">
+                    <input type="submit" name="submitSearchBandsName" value="Keresés Név alapján">
+                    <input type="submit" name="submitSearchBandsCountry" value="Keresés Ország alapján">
+                </div>
+            </form>
             <div class=tableDiv>
                 <form id="formAdd" action="bands.php" method="post"></form>
                 <table class="tableMain">
