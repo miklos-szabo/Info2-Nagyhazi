@@ -41,7 +41,7 @@ $result = mysqli_query($link, "select c.id, ifnull(group_concat(b.name separator
 </head>
 <body>
 <div id="container">
-    <?php if (isset($_get['created'])): ?>
+    <?php if (isset($_GET['created'])): ?>
         <div class="alertBoxSuccess">
             <div class="alertText">Sikeres hozzáadás!</div>
         </div>

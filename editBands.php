@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
     $name = mysqli_real_escape_string($link, $_POST['name']);
     $country = mysqli_real_escape_string($link, $_POST['country']);
     $formed_in = mysqli_real_escape_string($link, $_POST['formed_in']);
-    $query = sprintf("update band set name = '%s', country = '%s', formed_in = '%d' where id = '%s'",
+    $query = sprintf("update band set name = '%s', country = '%s', formed_in = '%d' where id = '%d'",
                                     $name, $country, $formed_in, $id);
     mysqli_query($link, $query) or die(mysqli_error($link));
     mysqli_close($link);

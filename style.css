@@ -54,6 +54,14 @@ a:hover, a:active {
     margin: 60px 30px 10px 30px;
 }
 
+.indexTableDiv{
+    height: 200px;
+    overflow: auto;
+    width: 90%;
+    margin: 0 5%;
+    background-color: #545659;
+}
+
 .tableDiv{
     height: 400px;
     overflow: auto;
@@ -107,11 +115,11 @@ td{
 }
 
 .tableEdit{
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
-.tableEdit input {
+.tableEdit input, select {
     width: 250px;
 }
 
@@ -140,4 +148,8 @@ td{
 
 .addIcon{
     cursor: pointer;
+}
+
+.bandSelect{
+    width: 60px;
 }
