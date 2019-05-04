@@ -6,7 +6,7 @@ $link = getDB();
 if(!isset($_GET['id']))
     header("Location: venues.php");
 
-$id = $_GET['id'];
+$id = mysqli_real_escape_string($link, $_GET['id']);
 
 //Törlés
 $deleted = false;

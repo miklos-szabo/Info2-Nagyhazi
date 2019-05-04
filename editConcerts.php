@@ -46,7 +46,7 @@ if(isset($_GET['id']) && $_GET['mode'] == "delete")
 }
 
 if (isset($_GET['id']))
-{
+{   //Szerkesztéshez adatok
     $query = sprintf("select c.id, v.id as venueid, ifnull(group_concat(b.name separator ', '), '-') as bands,
                                                 group_concat(b.id separator ', ') as bandids,
                                                 ifnull(v.name, '-') as name, c.date, 
