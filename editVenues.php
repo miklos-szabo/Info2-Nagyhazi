@@ -12,7 +12,7 @@ $id = mysqli_real_escape_string($link, $_GET['id']);
 $deleted = false;
 if(isset($_GET['id']) && $_GET['mode'] == "delete")
 {
-    $query = sprintf("delete from venue where id = '%d'", mysqli_real_escape_string($link, $id));
+    $query = sprintf("delete from venue where id = '%d'", $id);
     //Ha egy koncertben szerepel, először null-ra állítjuk a helyszínét
     $constraintQuery = sprintf("update concert set venueid = null where venueid = '%d'", $id);
     mysqli_query($link, $constraintQuery) or die(mysqli_error($link));
@@ -58,15 +58,15 @@ if(isset($_POST['submit']))
                 <table class="tableEdit">
                     <tr>
                         <td><label for="name">Név</label></td>
-                        <td><input type="text" name="name" id="name" value="<?=$row['name']?>"></td>
+                        <td><input type="text" name="name" id="name" value="<?=$row['name']?>" required></td>
                     </tr>
                     <tr>
                         <td><label for="address">Cím</label></td>
-                        <td><input type="text" name="address" id="address" value="<?=$row['address']?>"></td>
+                        <td><input type="text" name="address" id="address" value="<?=$row['address']?>" required></td>
                     </tr>
                     <tr>
                         <td><label for="capacity">Kapacitás</label></td>
-                        <td><input type="number" name="capacity" id="capacity" value="<?=$row['capacity']?>"></td>
+                        <td><input type="number" name="capacity" id="capacity" value="<?=$row['capacity']?>" required></td>
                     </tr>
                     <tr>
                         <td colspan="2"><input class="submitButton" type="submit" name="submit" value="Elküld"></td>

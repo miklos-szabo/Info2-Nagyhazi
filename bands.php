@@ -3,7 +3,8 @@ include "database.php";
 $link = getDB();
 //Új létrehozása
 $created = false;
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']))
+{
     $name = mysqli_real_escape_string($link, $_POST['name']);
     $country = mysqli_real_escape_string($link, $_POST['country']);
     $formed_in = mysqli_real_escape_string($link, $_POST['formed_in']);

@@ -1,6 +1,8 @@
 <?php
 include "database.php";
 $link = getDB();
+
+//Nem kell minden módhoz id
 if(isset($_GET['id']))
     $id = mysqli_real_escape_string($link, $_GET['id']);
 
@@ -10,10 +12,9 @@ if (isset($_POST['submitAdd']))
 {
     //Koncert hozzáadása
     $venueid = mysqli_real_escape_string($link, $_POST['venueid']);
-    //header("Location: concerts.php?venueid=".($venueid===""? "null" : $venueid).'<--');
     $date = mysqli_real_escape_string($link, $_POST['date']);
     $available_tickets = mysqli_real_escape_string($link, $_POST['available_tickets']);
-    $query = sprintf("insert into concert(venueid, date, available_tickets) values (NULLIF('%s', ''), '%s', '%d')",
+    $query = sprintf("insert into concert(venueid, date, available_tickets) values (nullif('%s', ''), '%s', '%d')",
                                 $venueid, $date, $available_tickets);
     mysqli_query($link, $query) or die(mysqli_error($link));
     $lastId = mysqli_insert_id($link);
@@ -62,18 +63,18 @@ if (isset($_GET['id']))
 }
 
 //Szerkesztés
-if(isset($_POST['submitEdit']))
+if(isset($_GET['id']) && isset($_POST['submitEdit']))
 {
     //Kapcsolattábla
     //Szerkesztés előtti koncertek törlése
     mysqli_query($link, sprintf("delete concert_has_band from concert_has_band
                                     inner join concert c on concert_has_band.concertid = c.id
-                                    where c.id = '%d';", $_GET['id']));
+                                    where c.id = '%d';", $id));
     //Szerkesztés utáni koncertek hozzáadása
-    if($_POST["band1"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $_GET['id'], $_POST['band1']));
-    if($_POST["band2"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $_GET['id'], $_POST['band2']));
-    if($_POST["band3"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $_GET['id'], $_POST['band3']));
-    if($_POST["band4"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $_GET['id'], $_POST['band4']));
+    if($_POST["band1"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $id, $_POST['band1']));
+    if($_POST["band2"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $id, $_POST['band2']));
+    if($_POST["band3"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $id, $_POST['band3']));
+    if($_POST["band4"] !== "") mysqli_query($link, sprintf("insert into concert_has_band(concertid, bandid) VALUES('%d', '%d')", $id, $_POST['band4']));
 
     //Koncert
     $venueid = mysqli_real_escape_string($link, $_POST['venueid']);
@@ -93,7 +94,7 @@ if(isset($_POST['submitEdit']))
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Koncert Manager</title>
+    <title>Koncert Szerkesztése</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -158,7 +159,7 @@ if(isset($_POST['submitEdit']))
                         <td>
                             <select name="venueid" id="venueid">
                                 <?php
-                                $venueQuery = mysqli_query($link, "select id, name from venue") or die(mysqli_error());
+                                $venueQuery = mysqli_query($link, "select id, name from venue") or die(mysqli_error($link));
                                 $selectThisVenue = $row['venueid'];?>
                                 <option value=""></option>
                                 <?php while ($venueRow = mysqli_fetch_array($venueQuery)):?>
@@ -222,7 +223,7 @@ if(isset($_POST['submitEdit']))
                                         <?php endwhile;?>
                                     </select>
                                     <select class="bandSelect" name="band4" id="band4">
-                                        <option value=""selected></option>
+                                        <option value="" selected></option>
                                         <?php
                                         $bandQuery = mysqli_query($link, "select id, name from band");
                                         while ($bandRow = mysqli_fetch_array($bandQuery)):?>

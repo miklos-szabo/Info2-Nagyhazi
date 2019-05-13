@@ -12,7 +12,7 @@ $id = mysqli_real_escape_string($link, $_GET['id']);
 $deleted = false;
 if(isset($_GET['id']) && $_GET['mode'] == "delete")
 {
-    $query = sprintf("delete from band where id = '%d'", mysqli_real_escape_string($link, $id));
+    $query = sprintf("delete from band where id = '%d'", $id);
     //Ha egy koncertben szerepel, először onnan ki kell törölni
     $constraintQuery = sprintf("delete from concert_has_band where bandid = '%d'", $id);
     mysqli_query($link, $constraintQuery) or die(mysqli_error($link));
@@ -59,15 +59,15 @@ if(isset($_POST['submit']))
                 <table class="tableEdit">
                     <tr>
                         <td><label for="name">Név</label></td>
-                        <td><input type="text" name="name" id="name" value="<?=$row['name']?>"></td>
+                        <td><input type="text" name="name" id="name" value="<?=$row['name']?>" required></td>
                     </tr>
                     <tr>
                         <td><label for="name">Ország</label></td>
-                        <td><input type="text" name="country" id="country" value="<?=$row['country']?>"></td>
+                        <td><input type="text" name="country" id="country" value="<?=$row['country']?>" required></td>
                     </tr>
                     <tr>
                         <td><label for="name">Születési év</label></td>
-                        <td><input type="number" name="formed_in" id="formed_in" value="<?=$row['formed_in']?>"></td>
+                        <td><input type="number" name="formed_in" id="formed_in" value="<?=$row['formed_in']?>" required></td>
                     </tr>
                     <tr>
                         <td colspan="2"><input class="submitButton" type="submit" name="submit" value="Elküld"></td>

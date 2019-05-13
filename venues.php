@@ -62,7 +62,7 @@ $result = mysqli_query($link, "select id, name, address, ifnull(capacity, '-') a
                     <tr class="addingTableRow" id="addingTableRow">
                         <td><input form="formAdd" type="text" name="name" required></td>
                         <td><input form="formAdd" type="text" name="address" required></td>
-                        <td><input form="formAdd" type="number" name="capacity"></td>
+                        <td><input form="formAdd" type="number" name="capacity" required></td>
                         <td colspan="2"><input form="formAdd" type="submit" name="submit" value="Elküld"></td>
                     </tr>
                     <?php while ($row = mysqli_fetch_array($result)): ?>
